@@ -1,4 +1,4 @@
-// ~/sanityClient.ts
+// ~/sanityClient.js
 import { createClient } from '@sanity/client';
 
 export const client = createClient({

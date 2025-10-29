@@ -1,29 +1,56 @@
+// routes/[slug]/index.jsx
+import { createAsync } from "@solidjs/router";
+import { useParams } from "@solidjs/router";
+import { Show } from "solid-js";
 import { client } from "~/sanityClient";
 
-export async function load({ params }) {
-  const { slug } = params;
+// Fetch single presentation by slug (runtime)
+const getPresentation = async (slug) => {
   const presentation = await client.fetch(
-    `*[_type == "presentation"]`,
+    `*[_type == "presentation" && slug.current == $slug][0]{
+      title,
+      slug,
+      // add any other fields you need
+    }`,
     { slug }
   );
-  if (!presentation) throw new Error("Presentation not found");
-  return { presentation };
-}
+  return presentation;
+};
 
+// Generate static pages for each presentation
+export const route = {
+  prerender: async () => {
+    console.log("🔍 Fetching presentations for prerender...");
+    // Direct fetch at build time
+    const presentations = await client.fetch(
+      `*[_type == "presentation"]{ slug }`
+    );
+    console.log("📊 Found presentations:", presentations);
 
-export default function Presentation({ data }) {
+    if (!presentations || presentations.length === 0) {
+      console.warn("⚠️ No presentations found for prerender!");
+      return [];
+    }
+
+    // Map each presentation to a { slug: "value" } object
+    const routes = presentations.map(pres => ({
+      slug: pres.slug.current
+    }));
+    console.log("✅ Prerender routes:", routes);
+    return routes;
+  }
+};
+
+export default function PresentationPage() {
+  const params = useParams();
+  const presentation = createAsync(() => getPresentation(params.slug));
+
   return (
-    <div>
-      <h1>{data.presentation.title}</h1>
-      <ul>
-        {data.presentation.slides.map((slide) => (
-          <li key={slide._key}>
-            <a href={`/${data.presentation.slug.current}/${slide.slug}`}>
-              {slide.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <main>
+      <Show when={presentation()} fallback={<p>Loading...</p>}>
+        <h1>{presentation().title}</h1>
+        {/* Render your presentation content here */}
+      </Show>
+    </main>
   );
 }
