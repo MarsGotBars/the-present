@@ -1,21 +1,23 @@
 {
-  "name": "example-basic",
-  "type": "module",
-  "scripts": {
-    "dev": "vinxi dev",
-    "build": "vinxi build",
-    "start": "vinxi start",
-    "version": "vinxi version"
-  },
-  "dependencies": {
-    "@sanity/client": "6.22.5",
-    "@solidjs/meta": "^0.29.4",
-    "@solidjs/router": "^0.15.0",
-    "@solidjs/start": "^1.1.0",
-    "solid-js": "^1.9.5",
-    "vinxi": "^0.5.7"
-  },
-  "engines": {
-    "node": ">=22"
-  }
+	"name": "the-present",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^6.1.0",
+		"@sveltejs/adapter-static": "^3.0.10",
+		"@sveltejs/kit": "^2.43.2",
+		"@sveltejs/vite-plugin-svelte": "^6.2.0",
+		"svelte": "^5.39.5",
+		"vite": "^7.1.7"
+	},
+	"dependencies": {
+		"@sanity/client": "^7.12.0"
+	}
 }
