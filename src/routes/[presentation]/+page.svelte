@@ -1,13 +1,20 @@
 <script>
   import Intro from "$lib/components/Intro/Intro.svelte";
+  import { goto } from "$app/navigation";
 
   const { data } = $props();
   const { presentation } = data;
+
+  function handleRightClick(e) {
+    e.preventDefault();
+    goto("/")
+  }
 
   console.log("data here", presentation);
 </script>
 
 <a
+  oncontextmenu={handleRightClick}
   style="--vt-name: slide-{presentation.slug}"
   href={`${presentation.slug}/${presentation.nextSlide?.slug}`}
   class="wrapper"
@@ -23,8 +30,7 @@
 <style>
   a.wrapper {
     view-transition-name: var(--vt-name);
-    height: 100%;
-    width: 100%;
+
     place-content: center;
     place-items: center;
     cursor: none;
