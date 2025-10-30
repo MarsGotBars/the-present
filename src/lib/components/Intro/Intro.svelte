@@ -1,25 +1,28 @@
+<script>
+  const { title = "", children } = $props();
+</script>
+
 <section class="intro">
-  <h1 class="title">Welcome to <span>the <span>present</span></span></h1>
-  <p>Create, present, and captivate - in the moment.</p>
+  {@render children?.()}
 </section>
 
 <style>
   .intro {
     font-size: var(--xxl-text);
-    > .title {
+    > :global(:first-child) {
       font-size: inherit;
       width: fit-content;
       margin-bottom: 0.75rem;
 
-      &:hover span {
-        color: var(--quaternary);
+      &:hover :global(span) {
+        color: var(--quaternary-400);
       }
 
-      span {
-        color: var(--tertiary);
+      :global(span) {
+        color: var(--tertiary-400);
         transition: color 0.2s ease-out;
 
-        > span {
+        > :global(span) {
           position: relative;
           display: inline-block;
           margin-top: 0.5ch;
@@ -28,7 +31,7 @@
             margin: unset;
           }
 
-          &::after {
+          &:global(::after) {
             content: "";
             position: absolute;
             width: 1em;
@@ -42,8 +45,9 @@
         }
       }
     }
-    > p {
-      color: var(--tertiary);
+    > :global(:last-child) {
+      color: var(--tertiary-400);
+      font-size: clamp(1rem, 3vw, 1.5rem);
     }
   }
 </style>

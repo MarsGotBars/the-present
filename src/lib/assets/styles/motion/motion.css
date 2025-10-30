@@ -55,6 +55,11 @@
       }
     }
   }
+
+  .title + p{
+    opacity: 0;
+    animation: extra--reveal .5s 1s cubic-bezier(0.288, 0.627, 0.666, 0.988) forwards;
+  }
 }
 
 @keyframes extra--reveal {

@@ -4,7 +4,7 @@ import { client } from "$lib/client/sanityClient";
 export const prerender = true;
 
 export async function load({ params }) {
-  const query = `*[_type == "presentation"]{title, description, slug}`;
+  const query = `*[_type == "presentation"]{title, description, "slug": slug.current}`;
 
   const presentation = await client.fetch(query);
 
