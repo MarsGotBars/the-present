@@ -1,5 +1,7 @@
 <script>
   export const prerender = true;
+  
+  import "$lib/assets/styles/general.css";
 
   import favicon from "$lib/assets/favicon.svg";
 
@@ -10,4 +12,6 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
-{@render children?.()}
+<main>
+  {@render children?.()}
+</main>

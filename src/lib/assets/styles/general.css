@@ -1,0 +1,91 @@
+/* MARK: Fonts 
+*/
+
+@font-face {
+  font-family: "Noto";
+  src: url("/fonts/notoserif.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+body {
+  --bg-color-100: #338949;
+  --bg-color-200: #265b36;
+  --bg-color-300: #1a3d24;
+  --bg-color-400: #0d1f12;
+  --bg-color-500: #0b1b0f;
+  --bg-color-600: #08160b;
+  --bg-color-700: #050f07;
+
+  --text-color-100: #e0f3ca;
+  --text-color-200: #cde5ad;
+  --text-color-300: #b9d48f;
+  --text-color-400: #9bc068;
+  --text-color-500: #7fa24f;
+  --text-color-600: #64853c;
+  --text-color-700: #4b672c;
+
+  --tertiary-100: #fdfbf1;
+  --tertiary-200: #faf6e7;
+  --tertiary-300: #f7f2de;
+  --tertiary-400: #f5eed6;
+  --tertiary-500: #e1dabf;
+  --tertiary-600: #cdc5a9;
+  --tertiary-700: #b7ad90;
+
+  --quaternary-100: #a6dc82;
+  --quaternary-200: #84bf5c;
+  --quaternary-300: #669f45;
+  --quaternary-400: #4a7c2f;
+  --quaternary-500: #3f6927;
+  --quaternary-600: #345620;
+  --quaternary-700: #294419;
+
+  color: var(--text-color-400);
+  background: var(--bg-color-400);
+  font-family: Noto, sans-serif;
+
+  --xxl-text: clamp(1.5rem, 5vw - 1rem, 5rem);
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: clamp(1.125rem, 10vw, 2.25rem);
+  padding-block: 2.375rem;
+  padding-inline: 3rem;
+
+  @media (min-width: 40rem) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  > * {
+    margin-inline: auto;
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+a,
+span {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}

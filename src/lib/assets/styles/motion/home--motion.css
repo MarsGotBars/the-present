@@ -1,0 +1,73 @@
+@media (prefers-reduced-motion: no-preference) {
+  .title {
+    --title-timing: 0.7s;
+    --desired-wdth: 100;
+    --desired-wght: 400;
+
+    opacity: 0;
+    font-variation-settings: "wdth" 75;
+    font-variation-settings: "wght" 300;
+
+    animation: extra--reveal 0.5s 0.2s cubic-bezier(0.288, 0.627, 0.666, 0.988)
+      forwards;
+
+    span {
+      --span-timing: 0.5s;
+      --desired-wdth: 100;
+      --desired-wght: 700;
+
+      transition: inherit;
+      opacity: 0;
+      font-variation-settings: "wdth" 75;
+      font-variation-settings: "wght" 400;
+
+      animation: extra--reveal 0.5s var(--title-timing)
+        cubic-bezier(0.288, 0.627, 0.666, 0.988) forwards;
+
+      &::after {
+        display: block;
+        opacity: 0;
+        transform: rotateZ(-60deg) scale(0.6) translateX(-0.5em);
+        transform-origin: right center;
+        animation: star--reveal .52s 0.95s
+        /* found on https://easingwizard.com/ */
+          linear(
+            0,
+            -0.004 4.9%,
+            -0.02 9.4%,
+            -0.124 26.4%,
+            -0.126 30.5%,
+            -0.104 34.1%,
+            -0.027 38.8%,
+            0.108 43.1%,
+            0.299 47%,
+            0.817 55.2%,
+            0.97 59.1%,
+            1.071 63.4%,
+            1.118 67.7%,
+            1.127 72.6%,
+            1.108 77.2%,
+            1.019 90.7%,
+            1.004 95.2%,
+            1
+          )
+          forwards;
+      }
+    }
+  }
+}
+
+@keyframes extra--reveal {
+  to {
+    opacity: 1;
+    font-variation-settings: "wdth" var(--desired-wdth);
+    font-variation-settings: "wght" var(--desired-wght);
+  }
+}
+
+@keyframes star--reveal {
+  to {
+    opacity: 1;
+    transform: rotateZ(5deg) scale(1) translateX(0);
+  }
+}
