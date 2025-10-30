@@ -18,13 +18,7 @@
     });
   });
 
-  function handleRightClick(e) {
-    if ($page.url.pathname !== "/") {
-      e.preventDefault();
-      history.back();
-    }
-    return;
-  }
+  
 
   let { children } = $props();
 </script>
@@ -33,7 +27,7 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
-<main oncontextmenu={handleRightClick}>
+<main>
   {@render children?.()}
 </main>
 
