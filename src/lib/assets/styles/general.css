@@ -51,6 +51,14 @@ body {
   --quaternary-600: #345620;
   --quaternary-700: #294419;
 
+  --bad-color-100: #f6c9a5;
+  --bad-color-200: #f0a974;
+  --bad-color-300: #e78a4d;
+  --bad-color-400: #d36c2d;
+  --bad-color-500: #b55723;
+  --bad-color-600: #8a421b;
+  --bad-color-700: #612c12;
+
   color: var(--text-color-400);
   background: var(--bg-color-400);
   font-family: Noto, sans-serif;
@@ -89,4 +97,9 @@ span {
   letter-spacing: inherit;
   color: inherit;
   text-decoration: none;
+}
+
+::selection{
+  background: transparent;
+  color: inherit;
 }

@@ -7,7 +7,9 @@
   let { data } = $props();
   const { presentation } = data;
 </script>
-
+<svelte:head>
+  <title>The present</title>
+</svelte:head>
 <Intro>
   <h1 class="title">
     Welcome to <span>the <span>present</span></span>

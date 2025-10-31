@@ -24,11 +24,34 @@ export async function load({ params }) {
         contentType == "prosConsBlocks" => {
           "prosConsBlocks": prosConsBlocks[]{
             heading,
-            pros,
-            cons
+            "pros": pros[]{
+              _key,
+              _type,
+              selection,
+              listItem,
+              description,
+              _type == "pro" && defined(image) => {
+                "image": image.asset->{
+                  _id,
+                  url
+                }
+              }
+            },
+            "cons": cons[]{
+              _key,
+              _type,
+              selection,
+              listItem,
+              description,
+              _type == "con" && defined(image) => {
+                "image": image.asset->{
+                  _id,
+                  url
+                }
+              }
+            }
           }
         },
-        
         contentType == "slideList" => {
           "slideList": slideList[]->{
             title,
@@ -140,11 +163,6 @@ export async function load({ params }) {
   if (data.slide.video || data.slide.images) {
     elementCount += 1;
   }
-
-  console.log("Found slide:", data.slide);
-  console.log("Next slide:", nextSlide);
-  console.log("Prev slide:", prevSlide);
-  console.log("Element count:", elementCount);
 
   return {
     presentation: data.presentation,

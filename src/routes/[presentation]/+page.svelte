@@ -6,12 +6,16 @@
   const { presentation } = data;
 
   function handleRightClick(e) {
+    goto("/");
     e.preventDefault();
-    goto("/")
   }
 
   console.log("data here", presentation);
 </script>
+
+<svelte:head>
+  <title>The present - {presentation.title}</title>
+</svelte:head>
 
 <a
   oncontextmenu={handleRightClick}
